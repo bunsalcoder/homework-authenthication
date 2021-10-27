@@ -22,8 +22,8 @@ use App\Http\Controllers\PostController;
 // _____________Public route____________ //
 
 // users
-Route::post('users', [UserController::class, 'register']);
-Route::post('users', [UserController::class, 'login']);
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login']);
 
 
 // posts
@@ -34,12 +34,12 @@ Route::get('posts/{id}', [PostController::class, 'show']);
 // _____________Private route____________ //
 Route::group(['middleware' => ['auth:sanctum']], function(){
     // User
-    Route::post('users', [UserController::class, 'logout']);
+    Route::post('logout', [UserController::class, 'logout']);
 
     // Post
     Route::post('posts', [PostController::class, 'store']);
-    Route::put('posts', [PostController::class, 'update']);
-    Route::delete('posts', [PostController::class, 'destroy']);
+    Route::put('posts/{id}', [PostController::class, 'update']);
+    Route::delete('posts/{id}', [PostController::class, 'destroy']);
 });
 
 
